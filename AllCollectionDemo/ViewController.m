@@ -187,22 +187,40 @@
     static int currentLength = 1;
     static int lengthNumberOfArrayOneObject = 0;
     
-     
+   /*
     NSMutableArray *arrayLengthObject =[[NSMutableArray alloc] init];
+    for (id object in comps) {
+    for (id object1 in comps) {
+    if ([object1 length] == currentLength) {
+    [arrayLengthObject addObject:object1];
+    lengthNumberOfArrayOneObject++;
+    } else{
+    continue;
+    }
+    }
+    
+    currentLength++;
+    }
+    [arrayLengthObject loopArr];
+    */
+    NSMutableArray *arrayLengthObject =[[NSMutableArray alloc] init];
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init ];
     for (id object in comps) {
         for (id object1 in comps) {
             if ([object1 length] == currentLength) {
                 [arrayLengthObject addObject:object1];
-                lengthNumberOfArrayOneObject++;
+                //lengthNumberOfArrayOneObject++;
             } else{
                 continue;
             }
         }
-        
+        NSArray *sortedArray = [arrayLengthObject sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+        [finalArray addObjectsFromArray:sortedArray];
+        [arrayLengthObject removeAllObjects];
         currentLength++;
-     }
-     [arrayLengthObject loopArr];
-     
+    }
+    [finalArray loopArr];
+    
     
     // c2
     /*
